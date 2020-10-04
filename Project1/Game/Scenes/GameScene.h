@@ -6,7 +6,8 @@
 #include "../../Engine/Graphics/TextureHandler.h"
 #include "..//TesterClasses/ComponentA.h"
 #include "../../Engine/Math/PhysicsComponent.h"
-
+#include "../..//Engine/Rendering/2D/GuiObject.h"
+#include "..//..//Game/TesterClasses/GuiImageComponent.h"
 class GameScene : public Scene
 {
 public:
@@ -15,6 +16,7 @@ public:
 	virtual ~GameScene();
 	virtual bool OnCreate();
 	virtual void Render();
+	virtual void Draw();
 
 	virtual void Update(const float deltaTime_);
 private:

@@ -134,6 +134,8 @@
     <ClCompile Include="Engine\Core\CoreEngine.cpp" />
     <ClCompile Include="Engine\Graphics\ShaderHandler.cpp" />
     <ClCompile Include="Engine\Math\PhysicsComponent.cpp" />
+    <ClCompile Include="Engine\Rendering\2D\GuiObject.cpp" />
+    <ClCompile Include="Engine\Rendering\2D\SpriteSurface.cpp" />
     <ClCompile Include="Engine\Rendering\3D\GameObject.cpp" />
     <ClCompile Include="Engine\Rendering\3D\Mesh.cpp" />
     <ClCompile Include="Engine\Rendering\3D\Model.cpp" />
@@ -144,6 +146,7 @@
     <ClCompile Include="Engine\FX\LightSource.cpp" />
     <ClCompile Include="Engine\Rendering\3D\LoadOBJModel.cpp" />
     <ClCompile Include="Game\TesterClasses\ComponentA.cpp" />
+    <ClCompile Include="Game\TesterClasses\GuiImageComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Engine\Core\Window.cpp" />
     <ClCompile Include="Engine\Core\Timer.cpp" />
@@ -170,6 +173,9 @@
     <ClInclude Include="Engine\Math\BoundingBox.h" />
     <ClInclude Include="Engine\Math\PhysicsComponent.h" />
     <ClInclude Include="Engine\Math\Ray.h" />
+    <ClInclude Include="Engine\Rendering\2D\GuiComponent.h" />
+    <ClInclude Include="Engine\Rendering\2D\GuiObject.h" />
+    <ClInclude Include="Engine\Rendering\2D\SpriteSurface.h" />
     <ClInclude Include="Engine\Rendering\3D\GameObject.h" />
     <ClInclude Include="Engine\Rendering\3D\Mesh.h" />
     <ClInclude Include="Engine\Rendering\3D\Model.h" />
@@ -187,11 +193,14 @@
     <ClInclude Include="Engine\FX\MaterialLoader.h" />
     <ClInclude Include="Engine\Core\OctSpatialPartition.h" />
     <ClInclude Include="Game\TesterClasses\ComponentA.h" />
+    <ClInclude Include="Game\TesterClasses\GuiImageComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\colourFragment.glsl" />
     <None Include="Engine\Shaders\colourVertexShader.glsl" />
     <None Include="Engine\Shaders\fragmentShader.glsl" />
+    <None Include="Engine\Shaders\SpriteFragShader.glsl" />
+    <None Include="Engine\Shaders\SpriteVertShader.glsl" />
     <None Include="Engine\Shaders\vertexShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

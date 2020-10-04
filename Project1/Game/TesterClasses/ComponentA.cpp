@@ -21,7 +21,6 @@ bool ComponentA::OnCreate(GameObject* parent_)
 
 void ComponentA::Update(float deltaTime_)
 {
-	parent->SetPosition(parent->GetPosition() - glm::vec3(0.01f, 0.0f, 0.0f));
-	std::cout << "component a updating" << std::endl;
+	//std::cout << "component a updating" << std::endl;
 
 }

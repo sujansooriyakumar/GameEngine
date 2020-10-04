@@ -23,18 +23,14 @@ bool PhysicsComponent::OnCreate(GameObject* parent_)
 void PhysicsComponent::Update(float deltaTime_)
 {
 	parent->SetPosition(parent->GetPosition() + linearVelocity * deltaTime_);
-	/*
+
 	glm::vec3 axis = glm::cross(glm::vec3(0, 1, 0), linearVelocity);
 	axis = glm::normalize(axis);
-	glm::vec3 angularVel = axis * glm::length(linearVelocity);
-	parent->SetRotation(parent->GetRotation() + (0.5f * angularVel * parent->GetRotation() * deltaTime_));
-	*/
-
-	glm::vec3 result = glm::eulerAngles(orientation + (orientation * 0.5f * deltaTime_ * glm::quat(angularVelocity)));
+	orientation = glm::quat(parent->GetRotation());
+	orientation = orientation + 0.5f * glm::quat(0, axis.x, axis.y, axis.z) * orientation * deltaTime_;
+	parent->SetRotation(glm::normalize(glm::eulerAngles(orientation)));
 	
-	parent->SetRotation(result);
-	std::cout << parent->GetRotation().x << parent->GetRotation().y << parent->GetRotation().z << std::endl;
-
+	
 
 }
 

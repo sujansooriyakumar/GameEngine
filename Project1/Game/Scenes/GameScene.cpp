@@ -28,18 +28,24 @@ bool GameScene::OnCreate()
 	GameObject* dice = new GameObject(model1, glm::vec3(0.0f, 0.0f, 0.0f));
 	dice->SetScale(glm::vec3(0.5f));
 	SceneGraph::GetInstance()->AddGameObject(dice, "Die");
-	//dice->AddComponent<PhysicsComponent>();
-	//dice->GetComponent<PhysicsComponent>()->SetVelocity(glm::vec3(0.5f, 0, 0));
+	
 	GameObject* apple = new GameObject(model, glm::vec3(3.0f, 0.0f, 0.0f));
 	apple->SetScale(glm::vec3(0.1f));
+	apple->AddComponent<ComponentA>();
+	apple->GetComponent<ComponentA>();
 	apple->AddComponent<PhysicsComponent>();
+	dice->AddComponent<PhysicsComponent>();
 	apple->GetComponent<PhysicsComponent>()->SetVelocity(glm::vec3(-0.5f, 0, 0));
-	apple->GetComponent<PhysicsComponent>()->SetAngularVelocity(glm::vec3(0, 45.0f, 0));
-	apple->RemoveComponent<PhysicsComponent>();
-	//dice->GetComponent<PhysicsComponent>()->SetAngularVelocity(glm::vec3(0, 45.0f, 0));
+	dice->GetComponent<PhysicsComponent>()->SetVelocity(glm::vec3(0.5f , 0, 0));
 	apple->SetAngle(45);
 	dice->SetAngle(-45);
+
 	SceneGraph::GetInstance()->AddGameObject(apple, "Apple");
+
+	GuiObject* gui = new GuiObject(glm::vec3(0, 0, 0));
+	gui->AddComponent<GuiImageComponent>();
+	gui->GetComponent<GuiImageComponent>()->OnCreate("test");
+	SceneGraph::GetInstance()->AddGuiObject(gui);
 	
 	return true;
 }
@@ -54,4 +60,9 @@ void GameScene::Update(const float deltaTime_)
 void GameScene::Render()
 {
 	SceneGraph::GetInstance()->Render(CoreEngine::GetInstance()->GetCamera());
+}
+
+void GameScene::Draw()
+{
+	SceneGraph::GetInstance()->Draw(CoreEngine::GetInstance()->GetCamera());
 }

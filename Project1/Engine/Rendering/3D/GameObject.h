@@ -5,6 +5,7 @@
 #include "../../Core/Component.h"
 
 
+
 class GameObject {
 public:
 	GameObject(Model* model_, glm::vec3 position_ = glm::vec3());
