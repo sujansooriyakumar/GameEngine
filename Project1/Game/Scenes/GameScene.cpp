@@ -33,18 +33,20 @@ bool GameScene::OnCreate()
 	apple->SetScale(glm::vec3(0.1f));
 	apple->AddComponent<ComponentA>();
 	apple->GetComponent<ComponentA>();
+	apple->RemoveComponent<ComponentA>();
 	apple->AddComponent<PhysicsComponent>();
 	dice->AddComponent<PhysicsComponent>();
-	apple->GetComponent<PhysicsComponent>()->SetVelocity(glm::vec3(-0.5f, 0, 0));
-	dice->GetComponent<PhysicsComponent>()->SetVelocity(glm::vec3(0.5f , 0, 0));
+	apple->GetComponent<PhysicsComponent>()->SetVelocity(glm::vec3(-1, 0, 0));
+	dice->GetComponent<PhysicsComponent>()->SetVelocity(glm::vec3(1 , 0, 0));
 	apple->SetAngle(45);
 	dice->SetAngle(-45);
 
 	SceneGraph::GetInstance()->AddGameObject(apple, "Apple");
 
-	GuiObject* gui = new GuiObject(glm::vec3(0, 0, 0));
+	gui = new GuiObject(glm::vec3(720, 360, 0.0f));
 	gui->AddComponent<GuiImageComponent>();
-	gui->GetComponent<GuiImageComponent>()->OnCreate("test");
+	gui->GetComponent<GuiImageComponent>()->OnCreate("start", 1.0f, glm::vec4(1,1,1,1), 0.0f, glm::vec2(0,0));
+
 	SceneGraph::GetInstance()->AddGuiObject(gui);
 	
 	return true;
@@ -53,6 +55,7 @@ bool GameScene::OnCreate()
 void GameScene::Update(const float deltaTime_)
 {
 	SceneGraph::GetInstance()->Update(deltaTime_);
+	gui->FindContainingPoints();
 	
 
 }

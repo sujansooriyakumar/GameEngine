@@ -20,5 +20,6 @@ public:
 
 	virtual void Update(const float deltaTime_);
 private:
+	GuiObject* gui;
 };
 #endif

@@ -5,6 +5,7 @@
 #include "GuiComponent.h"
 #include <glm/glm.hpp>
 #include "../../Camera/Camera.h"
+#include <stdio.h>
 #include <string>
 
 class GuiObject {

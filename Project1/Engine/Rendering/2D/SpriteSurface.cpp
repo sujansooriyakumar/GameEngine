@@ -22,10 +22,10 @@ SpriteSurface::SpriteSurface(std::string name_, glm::vec2 scale_, float angle_, 
 	D.position = glm::vec2(0.5f, -0.5f);
 	D.textureCoords = glm::vec2(1, 1);
 	
-	vertexList.push_back(C);
-	vertexList.push_back(A);
 	vertexList.push_back(D);
+	vertexList.push_back(C);
 	vertexList.push_back(B);
+	vertexList.push_back(A);
 	
 
 	if (TextureHandler::GetInstance()->GetTexture(name) == 0) {
@@ -54,13 +54,13 @@ void SpriteSurface::Draw(Camera* camera_, glm::vec3 position_)
 	glm::mat4 model;
 	model = glm::translate(model, position_);
 	model = glm::rotate(model, angle, glm::vec3(0,1,0));
-	model = glm::scale(model, glm::vec3(scale.x, scale.y, 1));
+	model = glm::scale(model, glm::vec3(scale.x * width,  scale.y *height, 1));
 
 	glUniformMatrix4fv(proj, 1, GL_FALSE, glm::value_ptr(camera_->GetOrthographic()));
 
 	glUniform4fv(tintColourLoc, 1, glm::value_ptr(tint));
-	glBindVertexArray(VAO);
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+	glBindVertexArray(VAO);
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, vertexList.size());
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -80,12 +80,18 @@ float SpriteSurface::GetHeight()
 	return height;
 }
 
+void SpriteSurface::SetTint(glm::vec4 tint_)
+{
+	tint = tint_;
+}
+
 void SpriteSurface::GenerateBuffers()
 {
 
 	glGenVertexArrays(1, &VAO);
-	glBindVertexArray(VAO);
 	glGenBuffers(1, &VBO);
+
+	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER,vertexList.size() * sizeof(Vertex2D), &vertexList[0], GL_STATIC_DRAW);
@@ -96,7 +102,7 @@ void SpriteSurface::GenerateBuffers()
 
 	
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, sizeof(Vertex2D), (GLvoid*)offsetof(Vertex2D, textureCoords));
+	glVertexAttribPointer(1, 3,  GL_FLOAT, GL_FALSE, sizeof(Vertex2D), (GLvoid*)offsetof(Vertex2D, textureCoords));
 
 	
 

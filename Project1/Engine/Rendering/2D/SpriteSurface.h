@@ -24,7 +24,7 @@ public:
 	void Draw(Camera* camera_, glm::vec3 position_);
 	float GetWidth();
 	float GetHeight();
-
+	void SetTint(glm::vec4 tint_);
 	std::vector<Vertex2D> vertexList;
 
 

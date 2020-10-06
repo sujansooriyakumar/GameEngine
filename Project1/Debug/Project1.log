@@ -1,2 +1,4 @@
 ﻿  GameScene.cpp
+C:\Users\sujan\Desktop\Project1 - Copy\Project1\Engine\Rendering\3D\GameObject.h(102,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\sujan\Desktop\Project1 - Copy\Project1\Game\Scenes\GameScene.cpp(36): message :  see reference to function template instantiation 'void GameObject::RemoveComponent<ComponentA>(void)' being compiled
   Project1.vcxproj -> C:\Users\sujan\Desktop\Project1 - Copy\Debug\Project1.exe

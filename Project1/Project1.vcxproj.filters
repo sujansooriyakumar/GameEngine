@@ -221,4 +221,9 @@
     <None Include="Engine\Shaders\SpriteFragShader.glsl" />
     <None Include="Engine\Shaders\SpriteVertShader.glsl" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Texture\circle.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

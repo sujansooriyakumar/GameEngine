@@ -159,17 +159,19 @@ void SceneGraph::Render(Camera* camera_)
 void SceneGraph::Draw(Camera* camera_)
 {
 	glDisable(GL_DEPTH_TEST);
+
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	std::map<std::string, GuiObject*>::iterator it = sceneGuiObjects.begin();
-	while (it != sceneGuiObjects.end()) {
+	std::map<std::string, GuiObject*>::iterator iterator = sceneGuiObjects.begin();
+	while (iterator != sceneGuiObjects.end()) {
 		glUseProgram(ShaderHandler::GetInstance()->GetShader("test"));
-		it->second->Draw(camera_);
-		it++;
+		iterator->second->Draw(camera_);
+		iterator++;
 	}
+	glDisable(GL_BLEND);
+
 
 	glEnable(GL_DEPTH_TEST);
-	glDisable(GL_BLEND);
 }
 

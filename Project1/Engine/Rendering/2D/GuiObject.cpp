@@ -1,4 +1,5 @@
 #include "GuiObject.h"
+#include <iostream>
 
 GuiObject::GuiObject(glm::vec3 position_)
 {
@@ -27,7 +28,11 @@ void GuiObject::Draw(Camera* camera)
 
 bool GuiObject::FindContainingPoints()
 {
-	return false;
+	
+	for (auto m : guiComponents) {
+		if(m->FindContainingPoint(position)) return true;
+	}
+	return true;
 }
 
 void GuiObject::SetTag(std::string tag_)

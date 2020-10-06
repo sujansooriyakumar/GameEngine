@@ -203,6 +203,9 @@
     <None Include="Engine\Shaders\SpriteVertShader.glsl" />
     <None Include="Engine\Shaders\vertexShader.glsl" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Texture\circle.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
