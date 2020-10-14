@@ -3,6 +3,7 @@
 
 #include "Model.h"
 #include "../../Core/Component.h"
+#include "..//..//Audio/AudioSource.h"
 
 
 
@@ -28,7 +29,7 @@ public:
 	void SetTag(std::string tag_);
 	void SetHit(bool hit_, int buttonType_);
 
-	template<typename T> void AddComponent();
+	template<typename T, typename ... Args> void AddComponent(Args&&... param_);
 	template<typename T>  T* GetComponent();
 	template<typename T> void RemoveComponent();
 private:
@@ -49,14 +50,15 @@ private:
 	bool hit;
 };
 
-template<typename T>
-void GameObject::AddComponent()
+template<typename T, typename ... Args>
+void GameObject::AddComponent(Args&& ... param_)
 {
-	T* t = new T;
+	T* t = new T(std::forward<Args>(param_)...);
 	// verify that the game object is a child of the component class
 	if (dynamic_cast<Component*>(t) == nullptr) {
 		Debug::Error("not a component", "GameObject.cpp", __LINE__);
 		delete t;
+		t = nullptr;
 		return;
 	}
 	// if not write an error in the log file
@@ -69,6 +71,7 @@ void GameObject::AddComponent()
 	if (GetComponent<T>() != nullptr) {
 		Debug::Error("duplicate component", "GameObject.cpp", __LINE__);
 		delete t;
+		t = nullptr;
 		return;
 	}
 
@@ -101,9 +104,10 @@ void GameObject::RemoveComponent()
 
 	for (int i = 0; i < components.size(); i++) {
 		if (dynamic_cast<T*>(components.at(i)) != nullptr) {
-			components.at(i) = nullptr;
 
 			delete components.at(i);
+			components.at(i) = nullptr;
+
 			components.erase(components.begin() + i);
 
 		}

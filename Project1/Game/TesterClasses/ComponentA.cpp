@@ -21,6 +21,6 @@ bool ComponentA::OnCreate(GameObject* parent_)
 
 void ComponentA::Update(float deltaTime_)
 {
-	//std::cout << "component a updating" << std::endl;
+	std::cout << "component a updating" << std::endl;
 
 }

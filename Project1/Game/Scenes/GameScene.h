@@ -8,6 +8,9 @@
 #include "../../Engine/Math/PhysicsComponent.h"
 #include "../..//Engine/Rendering/2D/GuiObject.h"
 #include "..//..//Game/TesterClasses/GuiImageComponent.h"
+#include "../..//Engine/Audio/AudioHandler.h"
+#include "../..//Engine/Audio/AudioSource.h"
+
 class GameScene : public Scene
 {
 public:

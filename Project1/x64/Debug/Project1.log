@@ -1,0 +1,2 @@
+﻿TextureHandler.obj : error LNK2019: unresolved external symbol IMG_Load referenced in function "public: void __cdecl TextureHandler::CreateTexture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CreateTexture@TextureHandler@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)
+C:\Users\sujan\Desktop\Project1 - Copy\x64\Debug\Project1.exe : fatal error LNK1120: 1 unresolved externals

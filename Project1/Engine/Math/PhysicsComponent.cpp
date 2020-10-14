@@ -26,9 +26,17 @@ void PhysicsComponent::Update(float deltaTime_)
 
 	glm::vec3 axis = glm::cross(glm::vec3(0, 1, 0), linearVelocity);
 	axis = glm::normalize(axis);
+	
+	glm::quat q = glm::quat(0, 0, 0, 1);
+	glm::vec3 v = glm::vec3(0, 2, 0);
+	q = q + 0.5f * glm::quat(0, 0, 2, 0) * q;
+	q = glm::normalize(q);
 	orientation = glm::quat(parent->GetRotation());
-	orientation = orientation + 0.5f * glm::quat(axis.x, axis.y, axis.z, 0) * orientation * deltaTime_;
-	parent->SetRotation(glm::normalize(glm::eulerAngles(orientation)));
+	orientation = orientation +  glm::quat(0, 0.785398f, 0, 0) * (deltaTime_/2);
+	orientation = glm::normalize(orientation);
+	std::cout << q.x << " " << q.y << " " << q.z << " " << q.w << std::endl;
+	parent->SetRotation(glm::vec3(orientation.x, orientation.y, orientation.z));
+	parent->SetAngle(orientation.w);
 	
 	
 

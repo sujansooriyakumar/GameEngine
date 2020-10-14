@@ -106,6 +106,7 @@ void GameObject::SetHit(bool hit_, int buttonType_)
 	if (hit)
 	{
 		std::cout << tag << " hit" << std::endl;
+		if(GetComponent<AudioSource>() != nullptr) GetComponent<AudioSource>()->PlaySound();
 	}
 }
 bool GameObject::GetHit() const

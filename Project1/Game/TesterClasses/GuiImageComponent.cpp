@@ -23,7 +23,7 @@ void GuiImageComponent::OnCreate(std::string name_, float scale_, glm::vec4 tint
 
 void GuiImageComponent::Draw(Camera* camera_, glm::vec3 position_)
 {
-	sprite->Draw(camera_, position_);
+	sprite->Draw(camera_, position_ + glm::vec3(offset, 0));
 }
 
 bool GuiImageComponent::FindContainingPoint(glm::vec3 position_)
