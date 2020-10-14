@@ -49,6 +49,7 @@ void AudioHandler::LoadSound(std::string name_, bool loop, bool is3D, bool playb
 
 int AudioHandler::PlaySound(std::string name_, glm::vec3 pos_, glm::vec3 vel_, float volume_)
 {
+	std::cout << "playing" << std::endl;
 	int channelID = -1;
 	if (GetSound(name_) == nullptr) {
 		LoadSound(name_, true, true, true);
@@ -56,9 +57,11 @@ int AudioHandler::PlaySound(std::string name_, glm::vec3 pos_, glm::vec3 vel_, f
 
 	FMOD::Channel* channel = nullptr;
 	system->playSound(soundMap[name_], nullptr, true, &channel);
-	channel->set3DAttributes(&glmToFMOD(pos_), &glmToFMOD(vel_));
+	
+	 channel->set3DAttributes(&glmToFMOD(pos_), &glmToFMOD(vel_));
 	channel->setVolume(volume_);
-	channel->setPaused(false);
+	
+	 channel->setPaused(false);
 	channelID = channelCount;
 	channelCount++;
 	channelMap[channelID] = channel;
@@ -86,19 +89,33 @@ FMOD::Sound* AudioHandler::GetSound(std::string soundName_)
 
 void AudioHandler::UpdateChannelPositionVelocity(int channelID_, glm::vec3 newPos_, glm::vec3 newVel_)
 {
-	if (channelCount<= channelID_) {
-		channelMap[channelID_]->set3DAttributes(&glmToFMOD(newPos_), &glmToFMOD(newVel_));
+	std::map<int, FMOD::Channel*>::iterator channelIt = channelMap.begin();
+	while (channelIt != channelMap.end()) {
+		if (channelIt->first == channelID_) {
+			channelIt->second->set3DAttributes(&glmToFMOD(newPos_), &glmToFMOD(newVel_));
+
+		}
+		channelIt++;
+
 	}
+	
 
 }
 
 bool AudioHandler::isPlaying(int channelID_)
 {
-	if (channelCount <= channelID_) {
-		bool result;
-		channelMap[channelID_]->isPlaying(&result);
-		return result;
+	std::map<int, FMOD::Channel*>::iterator channelIt = channelMap.begin();
+
+	while (channelIt != channelMap.end()) {
+		if (channelIt->first == channelID_) {
+			bool result;
+			channelIt->second->isPlaying(&result);
+			return result;
+		}
+		channelIt++;
+
 	}
+	
 	return false;
 }
 

@@ -1,6 +1,4 @@
-﻿  AudioSource.cpp
-  GameScene.cpp
+﻿  GameScene.cpp
 C:\Users\sujan\Desktop\Project1 - Copy\Project1\Engine\Rendering\3D\GameObject.h(105,20): warning C4018:  '<': signed/unsigned mismatch
-  Generating Code...
 C:\Users\sujan\Desktop\Project1 - Copy\Project1\Game\Scenes\GameScene.cpp(39): message :  see reference to function template instantiation 'void GameObject::RemoveComponent<ComponentA>(void)' being compiled
   Project1.vcxproj -> C:\Users\sujan\Desktop\Project1 - Copy\Debug\Project1.exe

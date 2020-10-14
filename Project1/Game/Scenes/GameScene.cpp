@@ -38,9 +38,9 @@ bool GameScene::OnCreate()
 	apple->GetComponent<ComponentA>();
 	apple->RemoveComponent<ComponentA>();
 //	apple->AddComponent<AudioSource>("coin", false, true, true);
-	dice->AddComponent<PhysicsComponent>();
-	dice->GetComponent<PhysicsComponent>()->SetVelocity(glm::vec3(-0.4f, 0, 0));
-	dice->AddComponent<AudioSource>("coin", true, true, false);
+	//dice->AddComponent<PhysicsComponent>();
+	//dice->GetComponent<PhysicsComponent>()->SetVelocity(glm::vec3(-0.4f, 0, 0));
+	dice->AddComponent<AudioSource>("coin", false, false, false);
 	//dice->GetComponent<AudioSource>()->PlaySound();
 	//AudioSource audio("coin", true, false, false);
 	//audio.PlaySound();
@@ -73,5 +73,5 @@ void GameScene::Render()
 
 void GameScene::Draw()
 {
-	SceneGraph::GetInstance()->Draw(CoreEngine::GetInstance()->GetCamera());
+//	SceneGraph::GetInstance()->Draw(CoreEngine::GetInstance()->GetCamera());
 }

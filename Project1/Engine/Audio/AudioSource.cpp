@@ -27,7 +27,7 @@ bool AudioSource::OnCreate(GameObject* parent_)
 
 void AudioSource::Update(float deltaTime_)
 {
-	AudioHandler::GetInstance()->UpdateChannelPositionVelocity(channelID, parent->GetPosition(), glm::vec3(0));
+	//AudioHandler::GetInstance()->UpdateChannelPositionVelocity(channelID, parent->GetPosition(), glm::vec3(0));
 }
 
 bool AudioSource::isPlaying()
