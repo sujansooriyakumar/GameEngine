@@ -10,6 +10,7 @@
 #include "..//..//Game/TesterClasses/GuiImageComponent.h"
 #include "../..//Engine/Audio/AudioHandler.h"
 #include "../..//Engine/Audio/AudioSource.h"
+#include "../..//Engine/Rendering/3D/ParticleEmitter.h"
 
 class GameScene : public Scene
 {
@@ -24,5 +25,7 @@ public:
 	virtual void Update(const float deltaTime_);
 private:
 	GuiObject* gui;
+	ParticleEmitter* emitter;
+	Particle* particle;
 };
 #endif

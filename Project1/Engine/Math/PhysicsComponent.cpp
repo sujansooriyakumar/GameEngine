@@ -34,7 +34,6 @@ void PhysicsComponent::Update(float deltaTime_)
 	orientation = glm::quat(parent->GetRotation());
 	orientation = orientation +  glm::quat(0, 0.785398f, 0, 0) * (deltaTime_/2);
 	orientation = glm::normalize(orientation);
-	std::cout << q.x << " " << q.y << " " << q.z << " " << q.w << std::endl;
 	parent->SetRotation(glm::vec3(orientation.x, orientation.y, orientation.z));
 	parent->SetAngle(orientation.w);
 	

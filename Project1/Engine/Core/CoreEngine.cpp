@@ -51,6 +51,8 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 
 	ShaderHandler::GetInstance()->CreateProgram("test", "Engine/Shaders/SpriteVertShader.glsl", "Engine/Shaders/SpriteFragShader.glsl");
 
+	ShaderHandler::GetInstance()->CreateProgram("ParticleShader", "Engine/Shaders/ParticleVertexShader.glsl", "Engine/Shaders/ParticleFragShader.glsl");
+
 	if (gameInterface)
 	{
 		if (!gameInterface->OnCreate())

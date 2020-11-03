@@ -38,9 +38,9 @@ bool GameScene::OnCreate()
 	apple->GetComponent<ComponentA>();
 	apple->RemoveComponent<ComponentA>();
 //	apple->AddComponent<AudioSource>("coin", false, true, true);
-	//dice->AddComponent<PhysicsComponent>();
-	//dice->GetComponent<PhysicsComponent>()->SetVelocity(glm::vec3(-0.4f, 0, 0));
-	dice->AddComponent<AudioSource>("coin", false, false, false);
+	dice->AddComponent<PhysicsComponent>();
+	dice->GetComponent<PhysicsComponent>()->SetVelocity(glm::vec3(-0.4f, 0, 0));
+	dice->AddComponent<AudioSource>("coin", true, true, false);
 	//dice->GetComponent<AudioSource>()->PlaySound();
 	//AudioSource audio("coin", true, false, false);
 	//audio.PlaySound();
@@ -54,24 +54,31 @@ bool GameScene::OnCreate()
 	gui->GetComponent<GuiImageComponent>()->OnCreate("start2", 0.5f, glm::vec4(1,1,1,1), 0.0f, glm::vec2(0,0));
 
 	SceneGraph::GetInstance()->AddGuiObject(gui);
-	
+
+	emitter = new ParticleEmitter(50, "ParticleShader", glm::vec3(0.0f,0,0));
 	return true;
 }
 
 void GameScene::Update(const float deltaTime_)
 {
+	emitter->Update(deltaTime_);
+
 	SceneGraph::GetInstance()->Update(deltaTime_);
-	gui->FindContainingPoints();
 	
+	gui->FindContainingPoints();
+	// update audio handler
+	AudioHandler::GetInstance()->Update(deltaTime_);
 
 }
 
 void GameScene::Render()
 {
 	SceneGraph::GetInstance()->Render(CoreEngine::GetInstance()->GetCamera());
+	emitter->Render(CoreEngine::GetInstance()->GetCamera());
+
 }
 
 void GameScene::Draw()
 {
-//	SceneGraph::GetInstance()->Draw(CoreEngine::GetInstance()->GetCamera());
+	//SceneGraph::GetInstance()->Draw(CoreEngine::GetInstance()->GetCamera());
 }

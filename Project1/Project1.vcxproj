@@ -158,6 +158,8 @@
     <ClCompile Include="Engine\Rendering\3D\Model.cpp" />
     <ClCompile Include="Engine\Events\EventListener.cpp" />
     <ClCompile Include="Engine\Math\Frustum.cpp" />
+    <ClCompile Include="Engine\Rendering\3D\Particle.cpp" />
+    <ClCompile Include="Engine\Rendering\3D\ParticleEmitter.cpp" />
     <ClCompile Include="Game\Scenes\GameScene.cpp" />
     <ClCompile Include="Game\Game1.cpp" />
     <ClCompile Include="Engine\FX\LightSource.cpp" />
@@ -200,6 +202,8 @@
     <ClInclude Include="Engine\Rendering\3D\Model.h" />
     <ClInclude Include="Engine\Events\EventListener.h" />
     <ClInclude Include="Engine\Math\Frustum.h" />
+    <ClInclude Include="Engine\Rendering\3D\Particle.h" />
+    <ClInclude Include="Engine\Rendering\3D\ParticleEmitter.h" />
     <ClInclude Include="Game\Scenes\GameScene.h" />
     <ClInclude Include="Game\Game1.h" />
     <ClInclude Include="Game\Scenes\StartScene.h" />
@@ -218,6 +222,8 @@
     <None Include="Engine\Shaders\colourFragment.glsl" />
     <None Include="Engine\Shaders\colourVertexShader.glsl" />
     <None Include="Engine\Shaders\fragmentShader.glsl" />
+    <None Include="Engine\Shaders\ParticleFragShader.glsl" />
+    <None Include="Engine\Shaders\ParticleVertexShader.glsl" />
     <None Include="Engine\Shaders\SpriteFragShader.glsl" />
     <None Include="Engine\Shaders\SpriteVertShader.glsl" />
     <None Include="Engine\Shaders\vertexShader.glsl" />
