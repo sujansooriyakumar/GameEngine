@@ -7,15 +7,15 @@
 #include <string>
 #include <iostream>
 #include "Debug.h"
-
+#include "Renderer.h"
 class Window
 {
 public:
 	Window();
 	~Window();
-	bool OnCreate(std::string name_, int width_, int height_);
+	bool OnCreate(std::string name_, int width_, int height_, Renderer* r_);
 	void OnDestroy();
-
+	
 	int GetWidth();
 	int GetHeight();
 	SDL_Window* GetWindow() const;
@@ -25,6 +25,5 @@ private:
 	void SetPostAttributes();
 	int width, height;
 	SDL_Window* window;
-	SDL_GLContext context;
 };
 #endif

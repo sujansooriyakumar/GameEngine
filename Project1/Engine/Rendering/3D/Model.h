@@ -1,11 +1,12 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include "Mesh.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <string>
 #include "LoadOBJModel.h"
-
+#include "..//..//Core/Renderer.h"
+#include "OpenGLMesh.h"
+class CoreEngine;
 class Model {
 public:
 	Model(const std::string& objFilePath_,
@@ -42,5 +43,7 @@ private:
 	float angle;
 	glm::vec3 rotation;
 	glm::vec3 scale;
+	Renderer::RendererType rendererType;
+	
 };
 #endif

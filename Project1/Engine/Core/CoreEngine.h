@@ -13,6 +13,7 @@
 #include "../Graphics/TextureHandler.h"
 #include "../Events/EventListener.h"
 #include "../Rendering/SceneGraph.h"
+#include "OpenGLRenderer.h"
 
 class CoreEngine {
 public:
@@ -31,15 +32,18 @@ public:
 	Camera* GetCamera() const;
 
 	void SetCurrentScene(int sceneNum_);
-	void SetGameInterface(GameInterface* gameInterface_);
+	void SetGameInterface(GameInterface* gameInterface_, Renderer::RendererType rendererType_);
 	void SetCamera(Camera* camera_);
-
+	Renderer* GetRenderer();
+	Renderer::RendererType GetRendererType();
 	void Exit();
 
 	void NotifyOfMousePressed(glm::vec2 mouse_);
 	void NotifyOfMouseReleased(glm::vec2 mouse_, int buttonType_);
 	void NotifyOfMouseMove(glm::vec2 mouse_);
 	void NotifyOfMouseScroll(int y_);
+
+	Window* GetWindow();
 
 private:
 	CoreEngine();
@@ -60,7 +64,8 @@ private:
 	GameInterface* gameInterface;
 
 	int currentSceneNum;
-
+	Renderer* renderer;
+	Renderer::RendererType rendererType;
 	Camera* camera;
 };
 #endif

@@ -8,7 +8,7 @@ Window::~Window()
 
 }
 
-bool Window::OnCreate(std::string name_, int width_, int height_)
+bool Window::OnCreate(std::string name_, int width_, int height_, Renderer* renderer_)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -18,9 +18,8 @@ bool Window::OnCreate(std::string name_, int width_, int height_)
 	width = width_;
 	height = height_;
 
-	SetPreAttributes();
 
-	window = SDL_CreateWindow(name_.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
+	window = renderer_->CreateWindow(name_, width, height);
 	if (!window)
 	{
 		Debug::Error("Failed to create window", "Window.cpp ", __LINE__);
@@ -28,30 +27,13 @@ bool Window::OnCreate(std::string name_, int width_, int height_)
 	}
 
 
-	context = SDL_GL_CreateContext(window);
-	SetPostAttributes();
-	GLenum error = glewInit();
-
-
-	if (error != GLEW_OK)
-	{
-		Debug::FatalError("GLEW Failed", "Window.cpp ", __LINE__);
-		return false;
-	}
-
-
-	glEnable(GL_DEPTH_TEST);
-	glViewport(0, 0, width, height);
-
-	std::cout << "Graphics card: " << glGetString(GL_VENDOR) << std::endl;
-	std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
+	
 
 	return true;
 }
 
 void Window::OnDestroy()
 {
-	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(window);
 	window = nullptr;
 }

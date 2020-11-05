@@ -8,6 +8,7 @@
 #include "..//Graphics/ShaderHandler.h"
 #include "2D/GuiObject.h"
 #include "../Math/CollisionHandler.h"
+#include "3D/OpenGLMesh.h"
 class SceneGraph
 {
 public:

@@ -27,9 +27,16 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 
 	Debug::DebugInit();
 	Debug::SetSeverity(MessageType::TYPE_INFO);
+	if (rendererType == Renderer::RendererType::OpenGL) {
+		renderer = new OpenGLRenderer();
+	}
+
+	if (rendererType == Renderer::RendererType::Vulkan) {
+		// new vulkan renderer
+	}
 
 	window = new Window();
-	if (!window->OnCreate(name_, width_, height_))
+	if (!window->OnCreate(name_, width_, height_,  renderer))
 	{
 		Debug::FatalError("Window failed to init ", "CoreEngine.cpp", __LINE__);
 		return isRunning = false;
@@ -41,17 +48,9 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 
 	MouseEventListener::RegisterEngineObject(this);
 
-	ShaderHandler::GetInstance()->CreateProgram("colourShader",
-		"Engine/Shaders/ColourVertexShader.glsl",
-		"Engine/Shaders/ColourFragmentShader.glsl");
 
-	ShaderHandler::GetInstance()->CreateProgram("basicShader",
-		"Engine/Shaders/VertexShader.glsl",
-		"Engine/Shaders/FragmentShader.glsl");
 
-	ShaderHandler::GetInstance()->CreateProgram("test", "Engine/Shaders/SpriteVertShader.glsl", "Engine/Shaders/SpriteFragShader.glsl");
-
-	ShaderHandler::GetInstance()->CreateProgram("ParticleShader", "Engine/Shaders/ParticleVertexShader.glsl", "Engine/Shaders/ParticleFragShader.glsl");
+	
 
 	if (gameInterface)
 	{
@@ -99,14 +98,13 @@ void CoreEngine::Update(float deltaTime_)
 
 void CoreEngine::Render()
 {
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 	if (gameInterface)
 	{
 		gameInterface->Render();
 		gameInterface->Draw();
 	}
-	SDL_GL_SwapWindow(window->GetWindow());
+	//SDL_GL_SwapWindow(window->GetWindow());
 }
 
 void CoreEngine::OnDestroy()
@@ -129,9 +127,10 @@ void CoreEngine::OnDestroy()
 	exit(0);
 }
 
-void CoreEngine::SetGameInterface(GameInterface* gameInterface_)
+void CoreEngine::SetGameInterface(GameInterface* gameInterface_, Renderer::RendererType rendererType_)
 {
 	gameInterface = gameInterface_;
+	rendererType = rendererType_;
 }
 
 int CoreEngine::GetCurrentScene()
@@ -164,6 +163,16 @@ void CoreEngine::SetCamera(Camera* camera_)
 	camera = camera_;
 }
 
+Renderer* CoreEngine::GetRenderer()
+{
+	return renderer;
+}
+
+Renderer::RendererType CoreEngine::GetRendererType()
+{
+	return rendererType;
+}
+
 void CoreEngine::NotifyOfMousePressed(glm::vec2 mouse_)
 {
 
@@ -188,4 +197,9 @@ void CoreEngine::NotifyOfMouseScroll(int y_)
 	{
 		camera->ProcessMouseZoom(y_);
 	}
+}
+
+Window* CoreEngine::GetWindow()
+{
+	return window;
 }

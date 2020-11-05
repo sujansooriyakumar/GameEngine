@@ -1,4 +1,6 @@
 #include "Model.h"
+#include "..//..//Core/CoreEngine.h"
+
 Model::Model(const std::string& objFilePath_, const std::string& mtlFilePath_, GLuint shaderProgram_) : subMeshes(std::vector<Mesh*>()), shaderProgram(0), modelInstances(std::vector<glm::mat4>())
 {
 	subMeshes.reserve(10);
@@ -7,6 +9,13 @@ Model::Model(const std::string& objFilePath_, const std::string& mtlFilePath_, G
 	obj = new LoadOBJModel();
 	obj->LoadModel(objFilePath_, mtlFilePath_);
 	this->LoadModel();
+	if (CoreEngine::GetInstance()->GetRendererType() == Renderer::RendererType::OpenGL) {
+		rendererType = Renderer::RendererType::OpenGL;
+	}
+
+	if (CoreEngine::GetInstance()->GetRendererType() == Renderer::RendererType::Vulkan) {
+		rendererType = Renderer::RendererType::Vulkan;
+	}
 }
 
 Model::~Model()
@@ -96,7 +105,14 @@ void Model::LoadModel()
 {
 	for (int i = 0; i < obj->GetSubMeshes().size(); i++)
 	{
-		subMeshes.push_back(new Mesh(obj->GetSubMeshes()[i], shaderProgram));
+		if (rendererType == Renderer::RendererType::OpenGL) {
+			subMeshes.push_back(new OpenGLMesh(obj->GetSubMeshes()[i], shaderProgram));
+		}
+
+		if (rendererType == Renderer::RendererType::Vulkan) {
+			// add vulkan submeshes 
+
+		}
 	}
 
 	box = obj->GetBoundingBox();
