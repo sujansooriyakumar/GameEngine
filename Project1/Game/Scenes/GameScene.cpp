@@ -56,25 +56,30 @@ bool GameScene::OnCreate()
 	SceneGraph::GetInstance()->AddGuiObject(gui);
 
 	emitter = new ParticleEmitter(50, "ParticleShader", glm::vec3(0.0f,0,0));
+	
+	//CoreEngine::GetInstance()->GetRenderer()->run();
 	return true;
 }
 
 void GameScene::Update(const float deltaTime_)
 {
+	
 	emitter->Update(deltaTime_);
 
 	SceneGraph::GetInstance()->Update(deltaTime_);
 	
 	gui->FindContainingPoints();
-	// update audio handler
 	AudioHandler::GetInstance()->Update(deltaTime_);
+	
 
 }
 
 void GameScene::Render()
 {
+	
 	SceneGraph::GetInstance()->Render(CoreEngine::GetInstance()->GetCamera());
 	emitter->Render(CoreEngine::GetInstance()->GetCamera());
+	
 
 }
 

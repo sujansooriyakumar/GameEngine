@@ -14,6 +14,7 @@
 #include "../Events/EventListener.h"
 #include "../Rendering/SceneGraph.h"
 #include "OpenGLRenderer.h"
+#include "VulkanRenderer.h"
 
 class CoreEngine {
 public:

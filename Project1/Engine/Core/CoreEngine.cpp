@@ -32,7 +32,8 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 	}
 
 	if (rendererType == Renderer::RendererType::Vulkan) {
-		// new vulkan renderer
+		renderer = new VulkanRenderer();
+		
 	}
 
 	window = new Window();
@@ -40,6 +41,9 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_)
 	{
 		Debug::FatalError("Window failed to init ", "CoreEngine.cpp", __LINE__);
 		return isRunning = false;
+	}
+	if (rendererType == Renderer::Vulkan) {
+		renderer->init();
 	}
 
 	SDL_WarpMouseInWindow(window->GetWindow(),

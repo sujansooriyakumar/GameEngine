@@ -55,3 +55,11 @@ void OpenGLRenderer::SetPostAttributes()
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 32);
 
 }
+
+void OpenGLRenderer::init()
+{
+}
+
+void OpenGLRenderer::run()
+{
+}

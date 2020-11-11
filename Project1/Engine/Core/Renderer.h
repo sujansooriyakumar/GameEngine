@@ -20,6 +20,8 @@ public:
 		window = SDL_CreateWindow(name_.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width_, height_, SDL_WINDOW_HIDDEN);
 		return window;
 	}
+	virtual void init() = 0;
+	virtual void run() = 0;
 	SDL_Window* window;
 };
 

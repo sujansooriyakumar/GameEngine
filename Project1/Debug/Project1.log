@@ -1,9 +1,2 @@
-﻿  AudioHandler.cpp
-  Model.cpp
-  OpenGLMesh.cpp
-C:\Users\sujan\Desktop\Project1 - Copy\Project1\Engine\Rendering\3D\Model.cpp(106,20): warning C4018:  '<': signed/unsigned mismatch
-  ComponentA.cpp
-  Generating Code...
-C:\Users\sujan\Desktop\Project1 - Copy\Project1\Engine\Rendering\3D\OpenGLMesh.cpp(49,20): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\sujan\Desktop\Project1 - Copy\Project1\Engine\Audio\AudioHandler.cpp(144): warning C4715:  'AudioHandler::Initialize': not all control paths return a value
+﻿  Main.cpp
   Project1.vcxproj -> C:\Users\sujan\Desktop\Project1 - Copy\Debug\Project1.exe

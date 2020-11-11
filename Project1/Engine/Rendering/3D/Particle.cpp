@@ -7,7 +7,7 @@ Particle::Particle(GLuint shaderID_, glm::vec3 position_, glm::vec3 colour_, flo
 	position = position_;
 	colour = colour_;
 	lifeTime = lifeTime_;
-	size = 1.0f;
+	size = 5.0f;
 
 	GenerateBuffers();
 }
@@ -29,8 +29,6 @@ void Particle::Render(Camera* camera_)
 
 
 	glEnable(GL_PROGRAM_POINT_SIZE);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 	glBindVertexArray(VAO);
 
 	glDrawArrays(GL_POINTS, 0, 1);
@@ -47,7 +45,7 @@ void Particle::GenerateBuffers()
 
 
 	GLuint shaderProg = ShaderHandler::GetInstance()->GetShader("ParticleShader");
-	glUseProgram(shaderProg);
+	//glUseProgram(shaderProg);
 	colourLoc = glGetUniformLocation(shaderProg, "test");
 	positionLoc = glGetUniformLocation(shaderProg, "pos");
 	viewLoc = glGetUniformLocation(shaderProg, "view");

@@ -15,7 +15,8 @@ public:
 	SDL_Window* CreateWindow(std::string name_, int width_, int height_) override;
 	void SetPreAttributes();
 	void SetPostAttributes();
-private:
+	void init() override;
+	void run() override;
 	SDL_GLContext context;
 };
 

@@ -17,7 +17,7 @@ void main()
 	vec4 tmp = view * vec4(pos, 1.0f);
 	float dist = length(vec3(tmp.xyz));
 	float atten = inversesqrt(dist * 0.1f);
-	gl_PointSize = size;
+	gl_PointSize = size * atten;
 	gl_Position = proj * view  * vec4(pos, 1.0f);
 
 

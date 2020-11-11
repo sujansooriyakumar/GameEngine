@@ -1,0 +1,10 @@
+<?xml version = "1.0"?>
+<games>
+	<game id = "1">
+		<window>
+			<title>Game 258 Engine</title>
+			<width>1280</width>
+			<height>720</height>
+		</window>
+	</game>
+</games>

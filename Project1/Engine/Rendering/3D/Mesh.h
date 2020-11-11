@@ -28,7 +28,7 @@ public:
 	Mesh() {
 		
 	}
-	//virtual ~Mesh() = 0;
+	virtual ~Mesh() {}
 	virtual void Render(Camera* camera_, std::vector<glm::mat4> instances_) = 0;
 
 private:
